@@ -84,3 +84,21 @@ console.log(unionType.toUpperCase());
 
 //配列のユニオンタイプ 宣言した型は順不同なことがわかる
 let unionTypes: (number | string | boolean)[] = [true, 'hellp', 2343]
+
+//リテラル型 : 型注釈にしたものしか入れることができない。 完全に決まったものしかダメ
+const hugaga: 'hello' = 'hello'
+const turururu: true = true
+// わざわざリテラル型採用時に型注釈を使わなくても、consotと宣言すると自動的にリテラル型となる。
+const apple = 'apple'; // const apple:'apple' = 'apple'と同じ
+const bananana: 'bananana' = 'bananana'
+let clothSize: 'small' | 'medium' | 'large' = 'medium' // enum型と似ている宣言ができ、この3つしか入れれない。
+
+const cloth: {
+  color: string
+  // clothSize.small とはできない 
+  size: 'small' | 'medium' | 'large' // このようにしておけば後からこの3つのどれかに変更できる。
+} = {
+  color: 'white',
+  size: clothSize
+}
+cloth.size = 'medium'
