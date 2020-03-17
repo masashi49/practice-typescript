@@ -107,3 +107,30 @@ cloth.size = 'medium'
 
 console.log(cloth.size)
 
+// 関数の型 引数パラメータは型推論できない、型を書かないとanyになってしまうので注意、returnは推論してくれる
+// 関数の方は引数、returnすべて型を宣言したほうが良い。ドキュメントにもなるのであいまいを避けれる。
+function add(num1:number,num2:number): number {
+  return num1 + num2 //reutrn の型推論は正しく動く
+}
+
+add(2,2)
+
+// 何も返さない
+function sayHello():void{
+  console.log('hello');
+  return;
+};
+
+// : voidはreturn文があっても無くても使える。
+// return;とした場合はundefinedを返すことが出来る。
+// function sayHello():undefined{
+//   console.log('hello');
+//   return;
+// };
+
+console.log(sayHello());
+
+let tmp:undefined;
+// typescriptはundefinedは返すことを許していない。
+// 基本的にはundefinedはつかなわない。
+// どうしてもundifinedを返したい！という場合はfunction hoge():undifined{}としてもいいけど、ちょっとそもそも仕組みを考えたほうが良い。

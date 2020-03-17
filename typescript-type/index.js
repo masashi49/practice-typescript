@@ -71,10 +71,22 @@ var turururu = true;
 // わざわざリテラル型採用時に型注釈を使わなくても、consotと宣言すると自動的にリテラル型となる。
 var apple = 'apple'; // const apple:'apple' = 'apple'と同じ
 var bananana = 'bananana';
-var clothSize = 'medium'; // enum型と似ている宣言ができ、この3つしか入れれない。
+var clothSize = 'large'; // enum型と似ている宣言ができ、この3つしか入れれない。
 var cloth = {
     color: 'white',
     size: clothSize
 };
 cloth.size = 'medium';
 console.log(cloth.size);
+// 関数の型 引数パラメータは型推論できない、型を書かないとanyになってしまうので注意、returnは推論してくれる
+// 関数の方は引数、returnすべて型を宣言したほうが良い。ドキュメントにもなるのであいまいを避けれる。
+function add(num1, num2) {
+    return num1 + num2; //reutrn の型推論は正しく動く
+}
+add(2, 2);
+// 何も返さない
+function sayHello() {
+    console.log('hello');
+}
+;
+console.log(sayHello());
