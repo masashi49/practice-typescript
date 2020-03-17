@@ -113,8 +113,6 @@ function add(num1:number,num2:number): number {
   return num1 + num2 //reutrn の型推論は正しく動く
 }
 
-add(2,2)
-
 // 何も返さない
 function sayHello():void{
   console.log('hello');
