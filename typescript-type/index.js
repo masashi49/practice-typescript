@@ -65,3 +65,16 @@ var unionType = 'asdfjalsfjalsjflj';
 console.log(unionType.toUpperCase());
 //配列のユニオンタイプ 宣言した型は順不同なことがわかる
 var unionTypes = [true, 'hellp', 2343];
+//リテラル型 : 型注釈にしたものしか入れることができない。 完全に決まったものしかダメ
+var hugaga = 'hello';
+var turururu = true;
+// わざわざリテラル型採用時に型注釈を使わなくても、consotと宣言すると自動的にリテラル型となる。
+var apple = 'apple'; // const apple:'apple' = 'apple'と同じ
+var bananana = 'bananana';
+var clothSize = 'medium'; // enum型と似ている宣言ができ、この3つしか入れれない。
+var cloth = {
+    color: 'white',
+    size: clothSize
+};
+cloth.size = 'medium';
+console.log(cloth.size);

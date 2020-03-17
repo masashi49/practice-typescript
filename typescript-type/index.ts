@@ -91,14 +91,19 @@ const turururu: true = true
 // わざわざリテラル型採用時に型注釈を使わなくても、consotと宣言すると自動的にリテラル型となる。
 const apple = 'apple'; // const apple:'apple' = 'apple'と同じ
 const bananana: 'bananana' = 'bananana'
-let clothSize: 'small' | 'medium' | 'large' = 'medium' // enum型と似ている宣言ができ、この3つしか入れれない。
+
+// typeエイリアス(別名)
+type ClothSize = 'small' | 'medium' | 'large'; // リテラル型注釈を変数のようにして扱うことが出来る
+let clothSize: ClothSize = 'large' // enum型と似ている宣言ができ、この3つしか入れれない。
 
 const cloth: {
-  color: string
-  // clothSize.small とはできない 
-  size: 'small' | 'medium' | 'large' // このようにしておけば後からこの3つのどれかに変更できる。
+  color : string,
+  size : ClothSize,
 } = {
   color: 'white',
   size: clothSize
 }
 cloth.size = 'medium'
+
+console.log(cloth.size)
+
