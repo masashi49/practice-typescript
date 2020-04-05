@@ -83,10 +83,42 @@ console.log(cloth.size);
 function add(num1, num2) {
     return num1 + num2; //reutrn の型推論は正しく動く
 }
-add(2, 2);
 // 何も返さない
 function sayHello() {
     console.log('hello');
+    return;
 }
-;
+
+
+// : voidはreturn文があっても無くても使える。
+// return;とした場合はundefinedを返すことが出来る。
+// function sayHello():undefined{
+//   console.log('hello');
+//   return;
+// };
 console.log(sayHello());
+var tmp;
+// typescriptはundefinedは返すことを許していない。
+// 基本的にはundefinedはつかなわない。
+// どうしてもundifinedを返したい！という場合はfunction hoge():undifined{}としてもいいけど、ちょっとそもそも仕組みを考えたほうが良い。
+var testTypleUndifined;
+var testTypeNull = undefined; // undifined型もnull型も、お互いに入ることが出来る。
+//　関数文の型注釈
+var anotherAdd = add;
+anotherAdd(43, 4);
+function collbackFunction(num) {
+    return num;
+}
+// コールバック関数のts    第一引数はnumber , 第２引数はnumberを引数にもってnumberをreturnするコールバック関数
+function doubleAndHandle(num, cd) {
+    var doubleNum = cd(num * 3);
+    console.log(doubleNum);
+}
+//コールバック関数の戻り地をvoidにしてしまうと、コールバック関数を使うことができなくなってしまう(使用時の宣言を無視する)
+// function doubleAndHandle(num:number , cd:(num:number) => void):void{
+//   const doubleNum = cd(num * 3);
+//   console.log(doubleNum)
+// }
+doubleAndHandle(21, function (doubleNum) {
+    return doubleNum;
+});

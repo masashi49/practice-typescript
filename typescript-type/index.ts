@@ -97,8 +97,8 @@ type ClothSize = 'small' | 'medium' | 'large'; // リテラル型注釈を変数
 let clothSize: ClothSize = 'large' // enum型と似ている宣言ができ、この3つしか入れれない。
 
 const cloth: {
-  color : string,
-  size : ClothSize,
+  color: string,
+  size: ClothSize,
 } = {
   color: 'white',
   size: clothSize
@@ -109,18 +109,19 @@ console.log(cloth.size)
 
 // 関数の型 引数パラメータは型推論できない、型を書かないとanyになってしまうので注意、returnは推論してくれる
 // 関数の方は引数、returnすべて型を宣言したほうが良い。ドキュメントにもなるのであいまいを避けれる。
-function add(num1:number,num2:number): number {
+function add(num1: number, num2: number): number {
   return num1 + num2 //reutrn の型推論は正しく動く
 }
 
 // 何も返さない
-function sayHello():void{
+function sayHello(): void {
   console.log('hello');
   return;
 };
 
 // : voidはreturn文があっても無くても使える。
 // return;とした場合はundefinedを返すことが出来る。
+// typescriptは基本的にreturn でundefindeは返す事を認めていない。voidかanyを返さないといけない。
 // function sayHello():undefined{
 //   console.log('hello');
 //   return;
@@ -128,24 +129,24 @@ function sayHello():void{
 
 console.log(sayHello());
 
-let tmp:undefined;
+let tmp: undefined;
 // typescriptはundefinedは返すことを許していない。
 // 基本的にはundefinedはつかなわない。
 // どうしてもundifinedを返したい！という場合はfunction hoge():undifined{}としてもいいけど、ちょっとそもそも仕組みを考えたほうが良い。
 
-let testTypleUndifined:undefined ;
-let testTypeNull:null = undefined; // undifined型もnull型も、お互いに入ることが出来る。
+let testTypleUndifined: undefined;
+let testTypeNull: null = undefined; // undifined型もnull型も、お互いに入ることが出来る。
 
 //　関数文の型注釈
-const anotherAdd:(n1 : number , h2:number) => number = add;
-anotherAdd(43,4)
+const anotherAdd: (n1: number, h2: number) => number = add;
+anotherAdd(43, 4)
 
 
-function collbackFunction(num:number) : number{
+function collbackFunction(num: number): number {
   return num
 }
 // コールバック関数のts    第一引数はnumber , 第２引数はnumberを引数にもってnumberをreturnするコールバック関数
-function doubleAndHandle(num:number , cd:(num:number) => number):void{
+function doubleAndHandle(num: number, cd: (num: number) => number): void {
   const doubleNum = cd(num * 3);
   console.log(doubleNum)
 }
@@ -156,6 +157,6 @@ function doubleAndHandle(num:number , cd:(num:number) => number):void{
 //   console.log(doubleNum)
 // }
 
-doubleAndHandle(21, doubleNum =>{
-  return  doubleNum
+doubleAndHandle(21, doubleNum => {
+  return doubleNum
 })
