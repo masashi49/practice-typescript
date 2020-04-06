@@ -88,13 +88,12 @@ function sayHello() {
     console.log('hello');
     return;
 }
-
-
+;
 // : voidはreturn文があっても無くても使える。
-// return;とした場合はundefinedを返すことが出来る。
+// typescriptは基本的にreturn でundefindeは返す事を認めていない。voidかanyを返さないといけない。
 // function sayHello():undefined{
 //   console.log('hello');
-//   return;
+//   return; // return;とした場合はundefinedを返すことが出来る。
 // };
 console.log(sayHello());
 var tmp;
@@ -122,3 +121,5 @@ function doubleAndHandle(num, cd) {
 doubleAndHandle(21, function (doubleNum) {
     return doubleNum;
 });
+// アロー関数を使うと色々としょ略できる
+var doubleNumber = function (nummm) { return nummm * 2; };

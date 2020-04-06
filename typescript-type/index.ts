@@ -120,11 +120,11 @@ function sayHello(): void {
 };
 
 // : voidはreturn文があっても無くても使える。
-// return;とした場合はundefinedを返すことが出来る。
+
 // typescriptは基本的にreturn でundefindeは返す事を認めていない。voidかanyを返さないといけない。
 // function sayHello():undefined{
 //   console.log('hello');
-//   return;
+//   return; // return;とした場合はundefinedを返すことが出来る。
 // };
 
 console.log(sayHello());
@@ -138,9 +138,8 @@ let testTypleUndifined: undefined;
 let testTypeNull: null = undefined; // undifined型もnull型も、お互いに入ることが出来る。
 
 //　関数文の型注釈
-const anotherAdd: (n1: number, h2: number) => number = add;
+const anotherAdd: (num1: number, num2: number) => number = add;
 anotherAdd(43, 4)
-
 
 function collbackFunction(num: number): number {
   return num
@@ -160,3 +159,21 @@ function doubleAndHandle(num: number, cd: (num: number) => number): void {
 doubleAndHandle(21, doubleNum => {
   return doubleNum
 })
+
+// アロー関数を使うと色々としょ略できる
+let doubleNumber: (nummm: number) => number = (nummm: number) => nummm * 2;
+
+let unkowninput: unknown;
+let anyinput: any;
+
+unkowninput = 320;
+unkowninput = '23435'
+
+// unkown型は変数に入れることができない
+let tetsstsxt: string = unkowninput;
+let anyinputs: number = unkowninput;
+
+//unkowninputがstringの時だけ代入してねというように、ifで保証してあげれば使える。
+if (typeof unkowninput === 'string') {
+  tetsstsxt = unkowninput;
+}
