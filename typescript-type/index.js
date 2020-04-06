@@ -1,3 +1,4 @@
+"use strict";
 var hasValue = true;
 var count = 0;
 var float = 3.123;
@@ -62,7 +63,7 @@ var banana = 'bananan';
 banana = anything; // any型はなんでも入る jsをtsに移行するときにはanyを使っていくが、最終的にはanyは使わないほうがいい。カオスになる。
 //ユニオンタイプ orのように型を限定できる
 var unionType = 'asdfjalsfjalsjflj';
-console.log(unionType.toUpperCase());
+// console.log(unionType.toUpperCase());
 //配列のユニオンタイプ 宣言した型は順不同なことがわかる
 var unionTypes = [true, 'hellp', 2343];
 //リテラル型 : 型注釈にしたものしか入れることができない。 完全に決まったものしかダメ
@@ -77,7 +78,7 @@ var cloth = {
     size: clothSize
 };
 cloth.size = 'medium';
-console.log(cloth.size);
+// console.log(cloth.size)
 // 関数の型 引数パラメータは型推論できない、型を書かないとanyになってしまうので注意、returnは推論してくれる
 // 関数の方は引数、returnすべて型を宣言したほうが良い。ドキュメントにもなるのであいまいを避けれる。
 function add(num1, num2) {
@@ -85,23 +86,22 @@ function add(num1, num2) {
 }
 // 何も返さない
 function sayHello() {
-    console.log('hello');
+    // console.log('hello');
     return;
 }
 ;
 // : voidはreturn文があっても無くても使える。
 // typescriptは基本的にreturn でundefindeは返す事を認めていない。voidかanyを返さないといけない。
 // function sayHello():undefined{
-//   console.log('hello');
+// console.log('hello');
 //   return; // return;とした場合はundefinedを返すことが出来る。
 // };
-console.log(sayHello());
+// console.log(sayHello());
 var tmp;
 // typescriptはundefinedは返すことを許していない。
 // 基本的にはundefinedはつかなわない。
 // どうしてもundifinedを返したい！という場合はfunction hoge():undifined{}としてもいいけど、ちょっとそもそも仕組みを考えたほうが良い。
 var testTypleUndifined;
-var testTypeNull = undefined; // undifined型もnull型も、お互いに入ることが出来る。
 //　関数文の型注釈
 var anotherAdd = add;
 anotherAdd(43, 4);
@@ -111,15 +111,34 @@ function collbackFunction(num) {
 // コールバック関数のts    第一引数はnumber , 第２引数はnumberを引数にもってnumberをreturnするコールバック関数
 function doubleAndHandle(num, cd) {
     var doubleNum = cd(num * 3);
-    console.log(doubleNum);
+    // console.log(doubleNum)
 }
 //コールバック関数の戻り地をvoidにしてしまうと、コールバック関数を使うことができなくなってしまう(使用時の宣言を無視する)
 // function doubleAndHandle(num:number , cd:(num:number) => void):void{
 //   const doubleNum = cd(num * 3);
-//   console.log(doubleNum)
+// console.log(doubleNum)
 // }
 doubleAndHandle(21, function (doubleNum) {
     return doubleNum;
 });
 // アロー関数を使うと色々としょ略できる
 var doubleNumber = function (nummm) { return nummm * 2; };
+var unkowninput;
+var anyinput;
+unkowninput = 32000;
+unkowninput = '23435';
+// unkown型は変数に入れることができない
+// let tetsstsxt: string = unkowninput;
+// let anyinputs: number = unkowninput;
+//unkowninputがstringの時だけ代入してねというように、ifで保証してあげれば使える。
+if (typeof unkowninput === 'string') {
+    var tetsstsxt = unkowninput;
+}
+// 何も返す必要がない場合など、neverを使って何も返さないと明示的にできる。
+function createErrora(text) {
+    throw new Error(text);
+}
+console.log(createErrora('aaaaaa')); //undifindeも何も帰らない。
+// tsx index.ts -w をつかつと、watchモードに入って、勝手にコンパイルしてくれる。
+var testhoge = 230;
+//const testhoge = 23435
