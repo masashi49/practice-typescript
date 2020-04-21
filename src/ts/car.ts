@@ -1,3 +1,4 @@
+export { };
 // ES3としてコンパイルされる
 
 class Car {
