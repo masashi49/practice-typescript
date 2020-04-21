@@ -8,5 +8,3 @@ class Person {
 }
 
 const jonn = new Person('ジョン');
-
-console.log(jonn)
